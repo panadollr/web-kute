@@ -51,7 +51,7 @@ for (let i = 0; i < allMusic.length; i++) {
   });
   $('#video').transition('fade up');
    $('#btn').transition('fade');
-    $('#image-album').transition('fade right');
+    $('#image-album').transition('scale');
 setTimeout(()=>{
     $('#bg-album').transition('slide down');
 $('#backbtn').transition('fade'); 
@@ -64,6 +64,10 @@ $('#listsongs').transition('fade up');
 
 setTimeout(()=>{
 $('#bottom-sidebar').transition('slide up');
+anime({
+  targets: '#ys',
+  fontSize : ['30px', '50px'],
+});
 },800)
 
 
@@ -90,7 +94,7 @@ audio.onpause=function(){
 back_album_button.addEventListener('click',()=>{
   $('#video').transition('fade up');
     $('#back-album-btn').transition('fade');
-    $('#image-album').transition('fade right');
+    $('#image-album').transition('scale');
 setTimeout(()=>{
     $('#bg-album').transition('slide down');
 $('#backbtn').transition('fade'); 
@@ -101,6 +105,10 @@ $('#listsongs').transition('fade up');
 
 setTimeout(()=>{
 $('#bottom-sidebar').transition('slide up');
+anime({
+  targets: '#ys',
+  fontSize : ['30px', '50px'],
+});
 },800)
 
 
@@ -113,11 +121,15 @@ $('#listsongs').transition('fade up');
 $('#backbtn').transition('fade');
 setTimeout(()=>{
   $('#bg-album').transition('slide down');
-$('#image-album').transition('fade right');
+$('#image-album').transition('scale');
 $('#back-album-btn').transition('fade');
 },300);
 setTimeout(()=>{
  $('#video').transition('fade up');
+ anime({
+  targets: '#ys',
+  fontSize : ['50px', '30px'],
+});
 },600)
 });
 
@@ -200,6 +212,9 @@ function playingSong(){
   
     if(allLiTag[j].getAttribute("a-index") == musicIndex){
       allLiTag[j].classList.add("playing");
+      $('html,body').animate({
+          scrollTop: $(".playing").offset().top},
+          'slow');
      
     }
 
@@ -218,31 +233,15 @@ function clicked(element){
 
 function playvideo(){
  loadVideo(videoIndex);
+video.play();
+ video.onplay=function(){
+
 anime({
   targets: '#video ',
   width:'400px',
  easing: 'easeInOutQuad',
 });
 $('#nextvideo').transition('slide right');
-
-
- video.onplay=function(){
-   document.getElementById('but1').innerHTML="<i class='pause icon'></i> Tạm dừng"
-  document.getElementById('but1').onclick=function(){
-    document.getElementById('but1').innerHTML="<i class='play icon'></i> Tiếp tục"
-    video.pause();
-  }
- }
-
-video.onpause=function(){
-   document.getElementById('but1').innerHTML="<i class='play icon'></i> Tiếp"
-  document.getElementById('but1').onclick=function(){
-    document.getElementById('but1').innerHTML="<i class='play icon'></i> Tạm dừng"
-    video.play();
-  }
- }
-
-
 
 setTimeout(()=>{
 anime({
@@ -264,10 +263,51 @@ setTimeout(()=>{
 $('html,body').animate({
           scrollTop: $("#video #vd").offset().top},
           'slow');
-video.play();
-audio.pause();
 
 },1350);
+
+
+   document.getElementById('but1').innerHTML="<i class='pause icon'></i> Tạm dừng"
+   audio.pause();
+  document.getElementById('but1').onclick=function(){
+    document.getElementById('but1').innerHTML="<i class='play icon'></i> Tiếp tục"
+    video.pause();
+  }
+ }
+
+video.onpause=function(){
+   document.getElementById('but1').innerHTML="<i class='play icon'></i> Tiếp"
+
+anime({
+  targets: '#video ',
+  width:'250px',
+ easing: 'easeInOutQuad',
+});
+$('#nextvideo').transition('slide right');
+
+
+setTimeout(()=>{
+anime({
+  targets: '#video-img1 ',
+  height : '200px',
+ easing: 'easeInOutQuad',
+});
+
+anime({
+  targets: '#video #vd',
+  height : '0px',
+ easing: 'easeInOutQuad',
+});
+
+
+},1000);
+
+  document.getElementById('but1').onclick=function(){
+    document.getElementById('but1').innerHTML="<i class='play icon'></i> Tạm dừng"
+    video.play();
+  }
+ }
+
 
 
 }
@@ -285,6 +325,7 @@ function loadVideo(indexNumb2){
   videoIndex > allVideo.length ? videoIndex = 1 : videoIndex = videoIndex;
   loadVideo(videoIndex);
   video.play();
+  $('#nextvideo').transition('slide right');
  }
 
 
@@ -294,3 +335,4 @@ function loadVideo(indexNumb2){
   .sidebar('toggle')
 ;
 }
+

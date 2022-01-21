@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Spotify </title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
+	  <link rel = "icon" href = "layouts/image/spotify.png" type = "image/x-icon">  
+</head>
+
+<style type="text/css">
+  body{
+    font-size: 90%;
+  }
+  .playing{
+    font-weight: bold;
+   animation-duration: 1s;
+  animation-name: changewidth;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  }
+
+  @keyframes changewidth {
+  from {
+    transform: scale(1.02);
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.6);
+  background: #21ba45;
+  }
+
+  to {
+    transform: scale(1.02);
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.6);
+    background: #21ba45;
+  }
+}
+
+ @keyframes playvi {
+  to {
+    transform: scale(1.02);
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.6);
+  }
+}
+
+
+
+.playvideo{
+  animation: playvi 1s;
+   animation-fill-mode: forwards;
+}
+
+
+  @media all and (max-width: 760px) {
+
+  #audio{
+    display: none;
+  }
+  #album-button{
+    align-content: center;
+   text-align: center;
+   object-position: center;
+  }
+  #listsongs{
+    margin-top: -50px;
+  }
+
+}
+</style>
+
+<body>
+
+<div class="ui left demo vertical pointing white sidebar menu" style="width: 160px;" id="left-sidebar" >
+    <a class="item">
+     <img src="images/Spotify-logo.png">
+    </a> </div>
+
+
+<div class="ui small top fixed menu" style="height: 45px;">
+  <div class="left menu">
+    <a class="item" onclick="show()">
+      <i class="big bars icon"></i>
+    </a>
+     <div class="item">
+      <h4 class="ui center aligned header">Web siu kute dành tặng cho Cường </h4> 
+    </div>
+  </div>
+</div>
+
+
+<div class="pusher" style="margin-top:40px;overflow:auto">
+    
+
+
+<div id="bg-album" style="background-image: url('https://papers.co/wallpaper/papers.co-sh56-white-oksusu-art-gradation-blur-36-3840x2400-4k-wallpaper.jpg');width: 100vw;height: 270px;position: absolute;">
+</div>
+
+<div class="ui center aligned container" >
+
+  <center style="overflow: hidden;">
+  <div class="ui items" style=" position: relative;overflow-x: hidden;">
+  <div class="item" id="album-title" style="margin-top:27px;;">
+    <div class="ui medium image" id="image-album" style="opacity:1;transition: 0.5s all;width: 250px;">
+      <img src="http://localhost:7882/webnghenhac-html/images/cuong1.jpg" style="height: 220px;object-fit: cover;width: 250px;">
+    </div>
+    <div class="middle aligned content" id="content-album" style="text-align: left;margin-top: 20px;">
+      <span class="stay">ALBUM</span><br>
+      <div class="ui massive header" id="ys" style="font-size: 4.5ch;">Liên khúc nhạc trữ tình của Cường Tỉnh </div>
+      <div class="meta">
+        <span  style="font-size:2ch">The best song ever in 2022</span>
+      </div>
+      <div class="ui right aligned container" id="album-button" style="line-height: 50px;">
+        <a class="ui green button" id="btn" style="border-radius:40px;width:130px;" >PHÁT</a>
+         <a class="ui green button" id="backbtn" style="border-radius:40px;width:200px;display: none;" >QUAY LẠI TRANG CHỦ</a>
+          <a class="ui green button" id="back-album-btn" style="border-radius:40px;width:200px;display: none;" >VÀO LẠI ALBUM</a>
+        <a class="ui black button" id="stopbtn" style="border-radius:40px;width:130px;display: none;" >TẠM DỪNG</a>
+         <button class="ui black basic button" style="border-radius:40px;width: 130px;" id="show">THEO DÕI</button>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<br>
+
+<div class="ui card" id="video" style=" box-shadow: 0 10px 16px 0 rgba(0,0,0,0.6);width: 250px;">
+  <div class="ui image">
+    <video style="height:0px;width: 100%;object-fit: cover;" id="vd" controls>
+      <source  type="video/mp4" >
+    </video>
+    <img id="video-img1" src="http://localhost:7882/webnghenhac-html/images/cuong9.jpg" style="height:200px;object-fit: cover;">
+  </div>
+  <div class="content" >
+    <div class="header" id="tenvideo">Hành trình làm ka xỉ của Cường Tỉnh</div>
+    <div class="description">
+      Phim tài liệu đặc biệt    </div>
+  </div>
+  <div class="ui two bottom attached buttons">
+    <div class="ui black button" onclick="nextvideo()" style="display: none;" id="nextvideo">
+      Tập tiếp theo <i class="angle right icon"></i>
+    </div>
+    <button class="ui inverted green button" onclick="playvideo()" id="but1">
+      <i class="play icon"></i>
+      Xem
+    </button>
+  </div>
+</div>
+<div class="ui popup">
+  <div class="header">User Rating</div>
+  <div class="ui yellow rating" data-rating="3"></div>
+</div>
+</center>
+</div>
+
+<div class="ui inverted items" id="listsongs" style="padding: 20px;display: none">
+</div>
+
+
+    <div class="ui green inverted bottom fixed menu" id="bottom-sidebar" style="overflow-x: scroll;display: none;">
+  <div class="item">
+
+    <img id="music-img" class="ui avatar image" style="height: 40px;width: 40px;object-fit: cover;">
+  </div>
+  <div class="item"  id="tenbaihat" style="font-size: 15px;font-weight: bold;">
+  </div>
+
+ <a class="item"  id="pre">
+  
+</a>
+
+	<audio id="audio" controls style="width:60%;height: 65px;" class="item">
+  <source  type="audio/mpeg">
+</audio>
+<a class="item" id="next">
+  
+</a>
+
+<div class="right menu">
+<div class="item" style="font-size: 15px;font-weight: bold;" id="casi">
+  </div>
+</div>
+</div>
+
+
+
+  </div>
+
+
+
+
+
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script src="js/music-list.js"></script>
+  <script src="js/video-list.js"></script>
+  <script src="js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
